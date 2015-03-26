@@ -37,9 +37,7 @@ exports.requestHandler = function(request, response) {
 
   } else if (request.method === 'GET') { 
       if (pathName === '/messages'){
-        console.log('getting' , theUrl.parse(request.url))
-        console.log(pathName)
-        var statusCode;
+         var statusCode;
         if (router[pathName]){
           statusCode = 200; 
         } else {

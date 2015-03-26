@@ -32,8 +32,7 @@ app.fetch = function(room) {
 	  contentType: 'application/json',
 	  // data: {'order': '-createdAt'},
 	  success: function (data) {
-      console.log ('data: '+data )
-  		app.clearMessages();
+     app.clearMessages();
       data = app.checkForSpam(data);
       app.updateRooms(data);
       app.addMessages(data,room);
