@@ -88,7 +88,6 @@ it('Should respond with messages that were previously posted', function() {
 
     expect(res._responseCode).to.equal(201);
 
-    // Now if we request the log for that room the message we posted should be there:
     req = new stubs.request('/classes/room1', 'GET');
     res = new stubs.response();
 
