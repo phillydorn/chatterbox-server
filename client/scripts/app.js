@@ -27,7 +27,7 @@ app.send = function(message) {
 
 app.fetch = function(room) {
      $.ajax({
-	  url: app.server, // +'/'+ room,
+	  url: app.server + '/messages', // +'/'+ room,
 	  type: 'GET',
 	  contentType: 'application/json',
 	  // data: {'order': '-createdAt'},

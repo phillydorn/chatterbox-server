@@ -17,25 +17,10 @@ exports.requestHandler = function(request, response) {
   var pathName = theUrl.parse(request.url).pathname;
   // console.log("Serving request type " + request.method + " for url " + request.url);
   var router = {'/': true, '/classes/messages': true, '/classes/room1': true, 
-  '/classes/room': true, '/log': true};
+  '/classes/room': true, '/log': true, '/messages': true};
 
 
-  if (pathName === '/') {
-    var statusCode = 200;
-
-    fs.readFile (__dirname + '/../client/index.html', function (err, data){
-      if (err) {
-        throw err;
-      }
-      var ourData = '';
-      ourData = '' + data;
-      headers['content-type'] = 'text/html';
-      response.writeHead(statusCode, headers);
-
-      response.end(ourData)
-    })
-
-  }else if (request.method === 'POST'){
+  if (request.method === 'POST'){
    var statusCode = 201;
     var data='';
 
@@ -51,20 +36,38 @@ exports.requestHandler = function(request, response) {
    response.writeHead(statusCode, headers);
 
   } else if (request.method === 'GET') { 
-    
-    var statusCode;
-    if (router[pathName]){
-      statusCode = 200; 
-    } else {
-      statusCode = 404;
-    }
-    response.writeHead(statusCode, headers);
-    response.end(JSON.stringify({results: database}));
+      if (pathName === '/messages'){
+        console.log('getting' , theUrl.parse(request.url))
+        console.log(pathName)
+        var statusCode;
+        if (router[pathName]){
+          statusCode = 200; 
+        } else {
+          statusCode = 404;
+        }
+        response.writeHead(statusCode, headers);
+        response.end(JSON.stringify({results: database}));
+      } else {
+          var statusCode = 200;
+
+          fs.readFile (__dirname + '/../client/index.html', function (err, data){
+            if (err) {
+              throw err;
+            }
+            var ourData = '';
+            ourData = '' + data;
+            headers['content-type'] = 'text/html';
+            response.writeHead(statusCode, headers);
+
+            response.end(ourData)
+          })
+        
+      }
 
   } else { //options
     var statusCode = 200;
     response.writeHead(statusCode, headers);
     response.end();
   }
- 
+
 }
