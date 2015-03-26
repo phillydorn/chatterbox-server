@@ -32,7 +32,6 @@ exports.requestHandler = function(request, response) {
     router[pathName] = true;
 
    response.writeHead(statusCode, headers);
-   response.end(JSON.stringify({results: database}));
 
   } else if (request.method === 'GET') { 
     
