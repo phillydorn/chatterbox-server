@@ -26,6 +26,8 @@ pids
 logs
 results
 
+###config###
+./client/env/
 
 ### NPM ###
 npm-debug.log
