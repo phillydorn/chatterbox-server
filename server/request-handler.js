@@ -13,14 +13,14 @@ this file and include it in basic-server.js so that it actually works.
 **************************************************************/
   var theUrl = require('url');
   var database = [{username: 'phil', 'roomname': 'lobby', text: 'testmessage'}];
-  var headers = defaultCorsHeaders;
   var defaultCorsHeaders = {
-    "Content-Type": "text/plain",
+    "Content-Type": "application/json",
     "access-control-allow-origin": "*",
     "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
     "access-control-allow-headers": "content-type, accept",
     "access-control-max-age": 10 // Seconds.
   };
+  var headers = defaultCorsHeaders;
 
 
 exports.requestHandler = function(request, response) {
@@ -46,6 +46,7 @@ exports.requestHandler = function(request, response) {
     request.on('end', function(){
       database.push(JSON.parse(data));
     })
+    router[something] = true;
 
    response.writeHead(statusCode, headers);
    response.end(JSON.stringify({results: database}));
@@ -65,7 +66,7 @@ exports.requestHandler = function(request, response) {
   } else { //options
     var statusCode = 200;
     response.writeHead(statusCode, headers);
-    response.end(null);
+    response.end();
   }
  
 }
