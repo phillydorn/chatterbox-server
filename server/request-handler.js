@@ -1,5 +1,6 @@
 
 var theUrl = require('url');
+var fs = require('fs');
 var database = [];
 var defaultCorsHeaders = {
   "Content-Type": "application/json",
@@ -18,7 +19,23 @@ exports.requestHandler = function(request, response) {
   var router = {'/': true, '/classes/messages': true, '/classes/room1': true, 
   '/classes/room': true, '/log': true};
 
-  if (request.method === 'POST'){
+
+  if (pathName === '/') {
+    var statusCode = 200;
+
+    fs.readFile (__dirname + '/../client/index.html', function (err, data){
+      if (err) {
+        throw err;
+      }
+      var ourData = '';
+      ourData = '' + data;
+      headers['content-type'] = 'text/html';
+      response.writeHead(statusCode, headers);
+
+      response.end(ourData)
+    })
+
+  }else if (request.method === 'POST'){
    var statusCode = 201;
     var data='';
 

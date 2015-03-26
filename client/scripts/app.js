@@ -1,5 +1,3 @@
-// YOUR CODE HERE:
-
 var app = {
  server: 'http://127.0.0.1:3000',
  unique: {},
@@ -22,7 +20,6 @@ app.send = function(message) {
     console.log(data, 'chatterbox: Message sent');
   },
   error: function (data) {
-    // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
     console.error('chatterbox: Failed to send message');
   }
 });
@@ -42,7 +39,6 @@ app.fetch = function(room) {
       app.addMessages(data,room);
     },
     error: function (data) {
-      // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
       console.error('chatterbox: Failed to retrieve message');
     }
    });
@@ -95,11 +91,7 @@ app.roomRefresh = function() {
 
 app.makeFriends = function (friend) {
   app.friends[friend.text()] = true;
-  // console.log(app.friends[friend.val()]);
-  // console.log(this.friends)
   console.log('Make friedns runs')
-  // // for (var key in app.friends){
-    // var temp = app.friends[key]
     var temp = friend.text();
     var friends = document.getElementsByClassName('username ' + temp)
     console.log(friends)
