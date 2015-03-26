@@ -12,7 +12,7 @@ this file and include it in basic-server.js so that it actually works.
 
 **************************************************************/
   var theUrl = require('url');
-  var database = [];
+  var database = [{username: 'phil', 'roomname': 'lobby', text: 'testmessage'}];
   var headers = defaultCorsHeaders;
   var defaultCorsHeaders = {
     "Content-Type": "text/plain",
@@ -53,11 +53,12 @@ exports.requestHandler = function(request, response) {
   } else if (request.method === 'GET') { 
     
     var statusCode;
-    if (router[something]){
-      statusCode = 200; 
-    } else {
-      statusCode = 404;
-    }
+     statusCode = 200;
+    // if (router[something]){
+    //   statusCode = 200; 
+    // } else {
+    //   statusCode = 404;
+    // }
     response.writeHead(statusCode, headers);
     response.end(JSON.stringify({results: database}));
 
